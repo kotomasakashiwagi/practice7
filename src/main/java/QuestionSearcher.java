@@ -8,9 +8,9 @@ public class QuestionSearcher {
             put("7-2", new Question2());
             put("7-3", new Question3());
             put("7-4", new Question4());
-            //put("6-5", new Question5());
-            //put("6-6", new Question6());
-            put("err",new OutOfQuestion());
+            put("7-5", new Question5());
+            put("7-6", new Question6());
+            put("err", new OutOfQuestion());
         }
     };
 
