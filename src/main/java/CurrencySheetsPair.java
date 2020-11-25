@@ -1,13 +1,13 @@
 public class CurrencySheetsPair {
-    private final int currency;
+    private final Coin currency;
     private final int sheets;
 
-    public CurrencySheetsPair(int currency, int sheets) {
-        this.currency = currency;
+    public CurrencySheetsPair(Coin coin, int sheets) {
+        this.currency = coin;
         this.sheets = sheets;
     }
 
-    public int getCurrency() {
+    public Coin getCurrency() {
         return this.currency;
     }
 

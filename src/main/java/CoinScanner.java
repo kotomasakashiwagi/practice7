@@ -10,8 +10,9 @@ public class CoinScanner {
     public static CurrencySheetsPair scanCurrencyAndSheetsPair() {
         Scanner scan = new Scanner(System.in);
         int currency = scan.nextInt();
+        Coin anEnum = Coin.getEnum(currency);
         int sheets = scan.nextInt();
-        return new CurrencySheetsPair(currency, sheets);
+        return new CurrencySheetsPair(anEnum , sheets);
     }
 
     public static CoinCase scanTenCurrencyAndSheetsPair(CoinCase coinCase) {

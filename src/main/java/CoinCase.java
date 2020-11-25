@@ -1,40 +1,43 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class CoinCase {
-    private Map<Integer, Integer> coinCaseDetails = new HashMap<Integer, Integer>() {
-        {
-            put(500, 0);
-            put(100, 0);
-            put(50, 0);
-            put(10, 0);
-            put(5, 0);
-            put(1, 0);
+    private EnumMap<Coin, Integer> coinCounter = new EnumMap<Coin, Integer>(Coin.class) {
+        {//コインはenum
+            put(Coin.FiveHundred, 0);
+            put(Coin.Hundred, 0);
+            put(Coin.Fifty, 0);
+            put(Coin.Ten, 0);
+            put(Coin.Five, 0);
+            put(Coin.One, 0);
         }
     };
 
-    public void addCoins(int currency, int sheets) {
-        try {
-            coinCaseDetails.put(currency, coinCaseDetails.get(currency) + sheets);
-        } catch (NullPointerException ignored) {
-
-        }
+    public void addCoins(Coin coin, int sheets) {
+            coinCounter.put(coin, coinCounter.get(coin) + sheets);
+            //スレッドセーフになっていない
     }
 
-    public int getCount(int currency) {
-        return coinCaseDetails.get(currency);
+    public int getCount(Coin coin) {
+        return coinCounter.get(coin);
     }
 
     public int getAmount() {
-        return coinCaseDetails.keySet().stream().mapToInt(key -> key * coinCaseDetails.get(key)).sum();
+        return coinCounter.keySet().stream().mapToInt(key -> key.getValue() * coinCounter.get(key)).sum();
     }
 
     public int getTotalCount() {
-        return coinCaseDetails.values().stream().mapToInt(sheets -> sheets).sum();
+        return coinCounter.values().stream().mapToInt(sheets -> sheets).sum();
     }
 
-    public Set getKey() {
-        return coinCaseDetails.keySet();
+    public Set<Coin> getKey() {
+        return coinCounter.keySet();
+    }
+    //お金と枚数のペアをsetにする
+    public Set<CurrencySheetsPair> getSetCurrencySheetsPair(){
+        Set<CurrencySheetsPair> setCurrencySheets = new HashSet<>();
+        for(Map.Entry<Coin,Integer> entry : coinCounter.entrySet()){
+            setCurrencySheets.add(new CurrencySheetsPair(entry.getKey(),entry.getValue()));
+        }
+        return setCurrencySheets;
     }
 }
