@@ -20,7 +20,8 @@ public enum Coin {
                 return coin;
             }
         }
-        return null;//よくない
+        return null;//よくないかも
     }
+
 
 }

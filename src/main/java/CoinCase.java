@@ -25,7 +25,7 @@ public class CoinCase {
         return coinCounter.keySet().stream().mapToInt(key -> key.getValue() * coinCounter.get(key)).sum();
     }
 
-    public int getTotalCount() {
+    public int getCount() {
         return coinCounter.values().stream().mapToInt(sheets -> sheets).sum();
     }
 

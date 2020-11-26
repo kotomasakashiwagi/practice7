@@ -45,7 +45,7 @@ public class CoinCaseTest {
         coinCase.addCoins(Coin.Hundred, 100);
         coinCase.addCoins(Coin.Ten, 0);
         coinCase.addCoins(Coin.One, 1);
-        assertEquals(101,coinCase.getTotalCount());
+        assertEquals(101,coinCase.getCount());
     }
 
     @Test
