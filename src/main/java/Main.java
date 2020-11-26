@@ -5,6 +5,6 @@ public class Main {
             System.exit(0);
         }
 
-        QuestionSearcher.selectQuestion(args[0]);
+        QuestionSelector.selectQuestion(args[0]);
     }
 }

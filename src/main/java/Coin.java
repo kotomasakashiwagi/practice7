@@ -4,8 +4,8 @@ public enum Coin {
     Fifty(50),
     Ten(10),
     Five(5),
-    One(1),
-    ;
+    One(1);
+
     private int value;
 
     Coin(int value) {
@@ -14,14 +14,12 @@ public enum Coin {
     public int getValue(){
         return this.value;
     }
-    public static Coin getEnum(int code) {
+    public static Coin convertCoinFromValue(int value) {
         for (Coin coin : Coin.values()) {
-            if (coin.getValue() == (code)) {
+            if (coin.getValue() == (value)) {
                 return coin;
             }
         }
-        return null;//よくないかも
+        throw new UnsupportedOperationException("そのお金は存在しません。");
     }
-
-
 }

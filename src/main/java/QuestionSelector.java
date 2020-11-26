@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class QuestionSearcher {
+public class QuestionSelector {
     private static final Map<String, Question> questionMap = new HashMap<String, Question>() {
         {
             put("7-1", new Question1());
@@ -10,16 +10,20 @@ public class QuestionSearcher {
             put("7-4", new Question4());
             put("7-5", new Question5());
             put("7-6", new Question6());
-            put("err", new OutOfQuestion());
+            //put("err", new OutOfQuestion());
         }
     };
 
     public static void selectQuestion(String questionNumber) {
         System.out.println(questionNumber);
-        try {
+        if(questionMap.containsKey(questionNumber)){
             questionMap.get(questionNumber).run();
-        } catch (NullPointerException e) {
-            questionMap.get("err").run();
+        } else {
+            //questionMap.get("err").run();
+            informException();
         }
+    }
+    public static void informException(){
+        System.err.println("正しい問題番号を入力してください。");
     }
 }

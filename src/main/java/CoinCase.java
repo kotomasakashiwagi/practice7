@@ -1,7 +1,10 @@
-import java.util.*;
-
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ConcurrentHashMap;
 public class CoinCase {
-    private EnumMap<Coin, Integer> coinCounter = new EnumMap<Coin, Integer>(Coin.class) {
+    private final ConcurrentMap<Coin, Integer> coinCounter = new ConcurrentHashMap<Coin, Integer>() {
         {//コインはenum
             put(Coin.FiveHundred, 0);
             put(Coin.Hundred, 0);
@@ -13,8 +16,7 @@ public class CoinCase {
     };
 
     public void addCoins(Coin coin, int sheets) {
-            coinCounter.put(coin, coinCounter.get(coin) + sheets);
-            //スレッドセーフになっていない
+        coinCounter.put(coin, coinCounter.get(coin) + sheets);
     }
 
     public int getCount(Coin coin) {
@@ -22,7 +24,11 @@ public class CoinCase {
     }
 
     public int getAmount() {
-        return coinCounter.keySet().stream().mapToInt(key -> key.getValue() * coinCounter.get(key)).sum();
+        return coinCounter.keySet().stream().mapToInt(this::getAmount).sum();
+    }
+
+    public int getAmount(Coin coin) {
+        return coin.getValue() * coinCounter.get(coin);
     }
 
     public int getCount() {
@@ -32,11 +38,12 @@ public class CoinCase {
     public Set<Coin> getKey() {
         return coinCounter.keySet();
     }
+
     //お金と枚数のペアをsetにする
-    public Set<CurrencySheetsPair> getSetCurrencySheetsPair(){
+    public Set<CurrencySheetsPair> getSetCurrencySheetsPair() {
         Set<CurrencySheetsPair> setCurrencySheets = new HashSet<>();
-        for(Map.Entry<Coin,Integer> entry : coinCounter.entrySet()){
-            setCurrencySheets.add(new CurrencySheetsPair(entry.getKey(),entry.getValue()));
+        for (Map.Entry<Coin, Integer> entry : coinCounter.entrySet()) {
+            setCurrencySheets.add(new CurrencySheetsPair(entry.getKey(), entry.getValue()));
         }
         return setCurrencySheets;
     }

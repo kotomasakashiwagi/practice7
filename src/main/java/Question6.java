@@ -1,8 +1,6 @@
 public class Question6 extends QuestionWithScanNumber {
     @Override
-    public void runQuestion() {
-        CoinCase coinCase = new CoinCase();
-        CoinScanner.scanTenCurrencyAndSheetsPair(coinCase);
+    public void runQuestion(CoinCase coinCase) {
         for (Coin coin : coinCase.getKey()) {
             CoinPrinter.printCountOfAllCoinsAndSubTotal(coin, coinCase.getCount(coin));
         }
@@ -11,5 +9,4 @@ public class Question6 extends QuestionWithScanNumber {
         int amount = coinCase.getAmount();
         IntPrinter.printSumOfMoney(amount);
     }
-
 }
