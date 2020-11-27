@@ -11,9 +11,11 @@ public enum Coin {
     Coin(int value) {
         this.value = value;
     }
-    public int getValue(){
+
+    public int getValue() {
         return this.value;
     }
+
     public static Coin convertCoinFromValue(int value) {
         for (Coin coin : Coin.values()) {
             if (coin.getValue() == (value)) {

@@ -1,8 +1,9 @@
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+
 public class CoinCase {
     private final ConcurrentMap<Coin, Integer> coinCounter = new ConcurrentHashMap<Coin, Integer>() {
         {//コインはenum

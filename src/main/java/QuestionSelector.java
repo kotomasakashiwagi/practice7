@@ -16,14 +16,15 @@ public class QuestionSelector {
 
     public static void selectQuestion(String questionNumber) {
         System.out.println(questionNumber);
-        if(questionMap.containsKey(questionNumber)){
+        if (questionMap.containsKey(questionNumber)) {
             questionMap.get(questionNumber).run();
         } else {
             //questionMap.get("err").run();
             informException();
         }
     }
-    public static void informException(){
+
+    public static void informException() {
         System.err.println("正しい問題番号を入力してください。");
     }
 }

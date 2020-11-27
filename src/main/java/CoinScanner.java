@@ -33,7 +33,7 @@ public class CoinScanner {
                 CurrencySheetsPair currencySheetsPair = scanCurrencyAndSheetsPair();
                 coinCase.addCoins(currencySheetsPair.getCoin(), currencySheetsPair.getSheets());
             }
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
             System.exit(0);
         }
